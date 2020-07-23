@@ -12,6 +12,7 @@ for REPO in \
     https://git.tuxed.net/deb/php-fkooman-secookie.deb \
     https://git.tuxed.net/deb/php-saml-sp.deb;
 do
+(
 	if ! [ -d ${REPO} ]; then
 		git clone ${REPO}
 	        cd "$(basename ${REPO})"
@@ -21,4 +22,5 @@ do
 	fi
 	uscan --download-current-version
 	pdebuild
+)
 done
