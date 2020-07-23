@@ -9,8 +9,9 @@ cd ${BUILD_DIR}
 
 for REPO in \
     https://salsa.debian.org/php-team/pear/php-constant-time \
-    https://git.tuxed.net/deb/php-fkooman-secookie.deb \
-    https://git.tuxed.net/deb/php-saml-sp.deb;
+    https://git.tuxed.net/deb/php-secookie \
+    https://git.tuxed.net/deb/php-saml-sp \
+    https://git.tuxed.net/deb/php-jwt;
 do
 (
 	if ! [ -d ${REPO} ]; then
