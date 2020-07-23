@@ -1,0 +1,6 @@
+MIRRORSITE=http://deb.debian.org/debian/
+EXTRAPACKAGES=apt-utils
+DISTRIBUTION=buster
+HOOKDIR=/etc/pbuilder/hook.d
+BINDMOUNTS=/var/cache/pbuilder/result
+OTHERMIRROR="deb [trusted=yes] file:/var/cache/pbuilder/result ./"
