@@ -11,4 +11,3 @@ cd ${REPO_DIR}
 
 gpg --clear-sign -a -o InRelease Release
 gpg --detach-sign -a -o Release.gpg Release
-

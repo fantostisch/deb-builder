@@ -2,7 +2,7 @@
 
 set -e
 
-BUILD_DIR=/home/debian/builder
+BUILD_DIR=/home/debian/build
 rm -rf ${BUILD_DIR}
 mkdir -p ${BUILD_DIR}
 cd ${BUILD_DIR}
