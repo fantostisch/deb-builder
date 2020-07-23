@@ -14,13 +14,12 @@ for REPO in \
     https://git.tuxed.net/deb/php-jwt;
 do
 (
-	if ! [ -d ${REPO} ]; then
+	DIR_NAME=$(basename ${REPO})
+	if ! [ -d "${DIR_NAME}" ]; then
 		git clone ${REPO}
-	        cd "$(basename ${REPO})"
-	else
-	        cd "$(basename ${REPO})"
-		git pull
 	fi
+	cd "$(DIR_NAME)"
+	git pull
 	uscan --download-current-version
 	pdebuild
 )
