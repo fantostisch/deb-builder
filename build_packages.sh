@@ -12,7 +12,8 @@ for REPO in \
     https://git.tuxed.net/deb/php-secookie \
     https://git.tuxed.net/deb/php-saml-sp \
     https://git.tuxed.net/deb/php-jwt \
-    https://git.tuxed.net/deb/php-oauth2-server;
+    https://git.tuxed.net/deb/php-oauth2-server \
+    https://git.tuxed.net/deb/php-openvpn-connection-manager;
 do
 (
 	DIR_NAME=$(basename ${REPO})
