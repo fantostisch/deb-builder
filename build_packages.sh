@@ -23,7 +23,7 @@ do
 	if ! [ -d "${DIR_NAME}" ]; then
 		git clone ${REPO}
 	fi
-	cd "$(DIR_NAME)"
+	cd "${DIR_NAME}"
 	git pull
 	uscan --download-current-version
 	pdebuild
