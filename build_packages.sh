@@ -18,7 +18,8 @@ for REPO in \
     https://git.tuxed.net/deb/php-sqlite-migrate \
     https://git.tuxed.net/deb/vpn-ca \
     https://git.tuxed.net/deb/vpn-lib-common \
-    https://git.tuxed.net/deb/vpn-server-api;
+    https://git.tuxed.net/deb/vpn-server-api \
+    https://git.tuxed.net/deb/vpn-user-portal;
 do
 (
 	DIR_NAME=$(basename ${REPO})
