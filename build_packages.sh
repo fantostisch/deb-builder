@@ -8,7 +8,7 @@ mkdir -p ${BUILD_DIR}
 cd ${BUILD_DIR}
 
 for REPO in \
-    https://salsa.debian.org/php-team/pear/php-constant-time \
+    https://salsa.debian.org/fkooman/php-constant-time \
     https://git.tuxed.net/deb/php-secookie \
     https://git.tuxed.net/deb/php-saml-sp \
     https://git.tuxed.net/deb/php-jwt \
