@@ -15,7 +15,8 @@ for REPO in \
     https://git.tuxed.net/deb/php-oauth2-server \
     https://git.tuxed.net/deb/php-openvpn-connection-manager \
     https://git.tuxed.net/deb/php-otp-verifier \
-    https://git.tuxed.net/deb/php-sqlite-migrate;
+    https://git.tuxed.net/deb/php-sqlite-migrate \
+    https://git.tuxed.net/deb/vpn-ca;
 do
 (
 	DIR_NAME=$(basename ${REPO})
