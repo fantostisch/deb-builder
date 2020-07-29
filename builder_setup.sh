@@ -12,6 +12,7 @@ set -e
 cp pbuilderrc /etc/pbuilderrc
 mkdir -p /etc/pbuilder/hook.d
 cp D70results /etc/pbuilder/hook.d
+cp E01apt-preferences /etc/pbuilder/hook.d
 chmod +x /etc/pbuilder/hook.d/*
 
 /usr/sbin/pbuilder create --distribution buster
