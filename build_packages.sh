@@ -21,7 +21,9 @@ for REPO in \
     https://git.tuxed.net/deb/vpn-server-api \
     https://git.tuxed.net/deb/vpn-user-portal \
     https://git.tuxed.net/deb/vpn-server-node \
-    https://git.tuxed.net/deb/vpn-portal-artwork-eduvpn;
+    https://git.tuxed.net/deb/vpn-portal-artwork-eduvpn \
+    https://git.tuxed.net/deb/vpn-portal-artwork-lc \
+    https://git.tuxed.net/deb/vpn-daemon;
 do
 (
 	DIR_NAME=$(basename ${REPO})
