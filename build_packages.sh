@@ -23,7 +23,8 @@ for REPO in \
     https://git.tuxed.net/deb/vpn-server-node \
     https://git.tuxed.net/deb/vpn-portal-artwork-eduvpn \
     https://git.tuxed.net/deb/vpn-portal-artwork-lc \
-    https://git.tuxed.net/deb/vpn-daemon;
+    https://git.tuxed.net/deb/vpn-daemon \
+    https://git.tuxed.net/deb/php-saml-sp-artwork-eduvpn;
 do
 (
 	DIR_NAME=$(basename ${REPO})
