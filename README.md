@@ -4,7 +4,7 @@ Install Debian 10 on a (virtual) machine. Make sure the following packages
 are installed:
 
     $ sudo apt install pbuilder build-essential apache2 pkg-php-tools \
-        dh-apache2 apt-utils git-buildpackage dh-golang
+        dh-apache2 apt-utils git-buildpackage dh-golang dh-sysuser
 
 # Web Server
 
