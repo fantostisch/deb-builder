@@ -1,5 +1,7 @@
 #!/bin/sh
 
+DISTRO=buster
+
 set -e
 
 BUILD_DIR=/home/debian/build
@@ -33,7 +35,12 @@ do
 		git clone ${REPO}
 	fi
 	cd "${DIR_NAME}"
-	git pull
+
+	git pull origin
+	# try to checkout distro specific branch
+	git checkout ${DISTRO} || true
+	git pull origin ${DISTRO} || true
+
 	uscan --download-current-version
 	pdebuild
 )
