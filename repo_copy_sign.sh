@@ -1,6 +1,6 @@
 #!/bin/sh
 
-REPO_DIR=/var/www/html/repo/buster
+REPO_DIR=/var/www/html/repo/sid
 
 mkdir -p ${REPO_DIR}
 cp /var/cache/pbuilder/result/* ${REPO_DIR}

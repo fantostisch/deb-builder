@@ -35,7 +35,7 @@ Put a copy of the public key in the web folder:
 
     $ sudo mkdir -p /var/www/html/repo
     $ sudo chown $(id -u -n).$(id -g -n) /var/www/html/repo
-    $ gpg --export -a > /var/www/html/repo/buster.key
+    $ gpg --export -a > /var/www/html/repo/sid.key
 
 # Builder
 
@@ -70,11 +70,11 @@ That's all. You should have a working repository now.
 Add this to `/etc/apt/sources.list` on the server where you want to install the
 software from the repository. This is usually _not_ your build server...
 
-    deb https://debian-vpn-builder.tuxed.net/repo/buster ./
+    deb https://debian-vpn-builder.tuxed.net/repo/sid ./
 
 Import the repository signing key:
 
-    $ curl https://debian-vpn-builder.tuxed.net/repo/buster.key | sudo apt-key add
+    $ curl https://debian-vpn-builder.tuxed.net/repo/sid.key | sudo apt-key add
 
 Now you should be able to install packages:
 

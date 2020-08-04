@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DISTRO=buster
+DISTRO=sid
 
 set -e
 
