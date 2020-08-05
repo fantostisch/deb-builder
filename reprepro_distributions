@@ -1,0 +1,17 @@
+Codename: sid
+Suite: unstable
+Architectures: amd64 source
+Components: main
+SignWith: yes
+
+Codename: bullseye
+Suite: testing
+Architectures: amd64 source
+Components: main
+SignWith: yes
+
+Codename: buster
+Suite: stable
+Architectures: amd64 source
+Components: main
+SignWith: yes
