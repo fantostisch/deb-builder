@@ -15,8 +15,10 @@ cd ${BUILD_DIR}
 #    https://git.tuxed.net/deb/vpn-portal-artwork-lc \
 #    https://git.tuxed.net/deb/php-saml-sp-artwork-eduvpn;
 
+# not needed on sid
+#    https://git.tuxed.net/deb/php-constant-time \
+
 for REPO in \
-    https://git.tuxed.net/deb/php-constant-time \
     https://git.tuxed.net/deb/php-secookie \
     https://git.tuxed.net/deb/php-jwt \
     https://git.tuxed.net/deb/php-oauth2-server \
