@@ -28,14 +28,8 @@ After you generate it, verify it:
     -------------------------------
     sec   rsa3072 2020-07-23 [SC] [expires: 2022-07-23]
           0A9D8A595B9B0408D8C7680E9ADF44C54EB48E5F
-    uid           [ultimate] Let's Connect (Debian 10) <software+debian@letsconnect-vpn.org>
+    uid           [ultimate] Debian Packaging Key <debian@example.org>
     ssb   rsa3072 2020-07-23 [E] [expires: 2022-07-23]
-
-Put a copy of the public key in the web folder:
-
-    $ sudo mkdir -p /var/www/html/repo
-    $ sudo chown $(id -u -n).$(id -g -n) /var/www/html/repo
-    $ gpg --export -a > /var/www/html/repo/sid.key
 
 # Builder
 
@@ -49,32 +43,53 @@ In order to setup your builder, download the scripts:
 
     $ cd builder
     $ sudo ./builder_setup.sh
+    $ ./setup_repo.sh
 
 ## Building Packages
 
-    $ cd builder
-    $ sudo ./build_packages.sh
+    $ ./build_packages.sh
 
-## Repository
+Exposing the package signing key:
 
-In order to copy the repository to the web server, do the following, _NOT_ with
-`sudo`:
+    $ gpg -a --export > /var/www/repo/repo.key
 
-    $ cd builder
-    $ ./repo_copy_sign.sh
+## Apache 
 
-That's all. You should have a working repository now.
+Put this in `/etc/apache2/conf-available/reprepro.conf`:
+
+	Alias /repo /var/www/repo
+	<Directory "/var/www/repo">
+		Options Indexes FollowSymLinks Multiviews
+		Require all granted
+	</Directory>
+
+	<Directory "/var/www/repo/db">
+		Require all denied
+	</Directory>
+
+	<Directory "/var/www/repo/conf">
+		Require all denied
+	</Directory>
+
+	<Directory "/var/www/repo/incoming">
+		Require all denied
+	</Directory>
+
+Enable it:
+
+	$ sudo a2enconf reprepro
+	$ sudo systemctl restart apache2
 
 # Repository User
 
 Add this to `/etc/apt/sources.list` on the server where you want to install the
 software from the repository. This is usually _not_ your build server...
 
-    deb https://debian-vpn-builder.tuxed.net/repo/sid ./
+    deb https://debian-vpn-builder.tuxed.net/repo sid main
 
 Import the repository signing key:
 
-    $ curl https://debian-vpn-builder.tuxed.net/repo/sid.key | sudo apt-key add
+    $ curl https://debian-vpn-builder.tuxed.net/repo/debian.key | sudo apt-key add
 
 Now you should be able to install packages:
 
