@@ -2,6 +2,7 @@
 
 DISTRO=sid
 
+rm -rf /var/cache/pbuilder/result/*
 set -e
 
 (

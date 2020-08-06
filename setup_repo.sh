@@ -1,7 +1,9 @@
 #!/bin/sh
-REPO_DIR=/var/www/repo
+REPO_DIR=/var/www/repo/*
 
+rm -rf ${REPO_DIR}
 sudo mkdir -p ${REPO_DIR}/conf
+
 sudo cp reprepro_distributions ${REPO_DIR}/conf/distributions
 
 # fix permissions
