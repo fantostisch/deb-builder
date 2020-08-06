@@ -1,5 +1,7 @@
 #!/bin/sh
 
+DISTRO=sid
+
 set -e
 
 (
@@ -10,8 +12,12 @@ set -e
 )
 
 cp pbuilderrc /etc/pbuilderrc
+
+# install hooks
 mkdir -p /etc/pbuilder/hook.d
 cp D70results /etc/pbuilder/hook.d
+cp /usr/share/doc/pbuilder/examples/B90lintian /etc/pbuilder/hook.d
 chmod +x /etc/pbuilder/hook.d/*
 
-/usr/sbin/pbuilder create --distribution sid
+# create pbuilder root
+/usr/sbin/pbuilder create --distribution ${DISTRO}
