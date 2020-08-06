@@ -51,7 +51,7 @@ In order to setup your builder, download the scripts:
 
 Exposing the package signing key:
 
-    $ gpg -a --export > /var/www/repo/repo.key
+    $ gpg -a --export > /var/www/repo/debian.key
 
 ## Apache 
 
