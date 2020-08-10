@@ -55,7 +55,7 @@ do
 				fi
 
 				uscan --download-current-version
-				sudo DIST=${DIST} pdebuild
+				sudo DIST=${DIST} pdebuild --use-pdebuild-internal
 			)
 		done
 
