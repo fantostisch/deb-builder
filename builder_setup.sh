@@ -11,7 +11,7 @@ do
 		# install hooks
 		rm -rf "/etc/pbuilder/hook.d/*"
 		mkdir -p "/etc/pbuilder/hook.d/${DIST}"
-		cp hooks/* "/etc/pbuilder/hook.d/${DIST}"
+		cp hooks/* "/etc/pbuilder/hook.d/${DIST}" || true
 		# install distro specific hooks (if available)
 		if [ -d "hooks/${DIST}" ]; then
 			cp hooks/${DIST}/* "/etc/pbuilder/hook.d/${DIST}"
