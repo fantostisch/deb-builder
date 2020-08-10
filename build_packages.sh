@@ -34,14 +34,14 @@ do
 		# not needed on sid
 		#    https://git.tuxed.net/deb/php-constant-time \
 
-		for REPO in https://git.tuxed.net/deb/php-secookie;
+		for REPO in https://git.tuxed.net/deb/php-secookie https://git.tuxed.net/deb/php-saml-sp;
 		do
 		(
 			DIR_NAME=$(basename "${REPO}")
 			git clone "${REPO}"
 			cd "${DIR_NAME}"
 			uscan --download-current-version
-			sudo pdebuild
+			sudo DIST=${DIST} pdebuild
 		)
 		done
 	)
