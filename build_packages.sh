@@ -34,7 +34,7 @@ do
 
 		if [ "sid" != "${DIST}" ]; then
 			# php-constant-time is only available in sid
-			PACKAGE_LIST="https://git.tuxed.net/deb/php-constant-time ${PACKAGE_LIST}"
+			PACKAGE_LIST="https://salsa.debian.org/php-team/pear/php-constant-time ${PACKAGE_LIST}"
 		fi
 
 		for REPO in ${PACKAGE_LIST}; do
