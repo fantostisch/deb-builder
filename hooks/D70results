@@ -1,6 +1,6 @@
 #!/bin/sh
 (
-	cd /var/cache/pbuilder/result
+	cd /var/cache/pbuilder/${DIST}/result
 	/usr/bin/apt-ftparchive packages . > Packages
 	/usr/bin/apt-ftparchive release . > Release
 	/usr/bin/apt-ftparchive sources . > Sources 2>/dev/null
