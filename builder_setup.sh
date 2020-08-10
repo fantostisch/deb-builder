@@ -4,8 +4,7 @@ set -e
 cp pbuilderrc /etc/pbuilderrc
 
 #for DIST in sid bullseye buster
-#for DIST in sid bullseye
-for DIST in sid
+for DIST in sid bullseye
 do
 	(
 		echo "*** ${DIST} ***"

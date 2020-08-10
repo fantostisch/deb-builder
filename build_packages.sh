@@ -3,23 +3,11 @@ set -e
 
 #REPO_DIR=/var/www/repo
 
-#for DIST in sid bullseye buster
-#for DIST in sid bullseye
-for DIST in sid
-do
-	(
-		BUILD_DIR=${HOME}/build/${DIST}
-		rm -rf "${BUILD_DIR}"
-		mkdir -p "${BUILD_DIR}"
-		cd "${BUILD_DIR}" || exit 1
-
-#		    https://git.tuxed.net/deb/php-secookie \
 #		    https://git.tuxed.net/deb/php-jwt \
 #		    https://git.tuxed.net/deb/php-oauth2-server \
 #		    https://git.tuxed.net/deb/php-openvpn-connection-manager \
 #		    https://git.tuxed.net/deb/php-otp-verifier \
 #		    https://git.tuxed.net/deb/php-sqlite-migrate \
-#		    https://git.tuxed.net/deb/php-saml-sp \
 #		    https://git.tuxed.net/deb/vpn-ca \
 #		    https://git.tuxed.net/deb/vpn-daemon \
 #		    https://git.tuxed.net/deb/vpn-lib-common \
@@ -31,18 +19,32 @@ do
 		#    https://git.tuxed.net/deb/vpn-portal-artwork-lc \
 		#    https://git.tuxed.net/deb/php-saml-sp-artwork-eduvpn;
 
-		# not needed on sid
-		#    https://git.tuxed.net/deb/php-constant-time \
+PACKAGE_LIST="
+	https://git.tuxed.net/deb/php-secookie \
+	https://git.tuxed.net/deb/php-saml-sp"
 
-		for REPO in https://git.tuxed.net/deb/php-secookie https://git.tuxed.net/deb/php-saml-sp;
-		do
-		(
-			DIR_NAME=$(basename "${REPO}")
-			git clone "${REPO}"
-			cd "${DIR_NAME}"
-			uscan --download-current-version
-			sudo DIST=${DIST} pdebuild
-		)
+#for DIST in sid bullseye buster
+for DIST in sid bullseye
+do
+	(
+		BUILD_DIR=${HOME}/build/${DIST}
+		rm -rf "${BUILD_DIR}"
+		mkdir -p "${BUILD_DIR}"
+		cd "${BUILD_DIR}" || exit 1
+
+		if [ "sid" != "${DIST}" ]; then
+			# php-constant-time is only available in sid
+			PACKAGE_LIST="https://git.tuxed.net/deb/php-constant-time ${PACKAGE_LIST}"
+		fi
+
+		for REPO in ${PACKAGE_LIST}; do
+			(
+				DIR_NAME=$(basename "${REPO}")
+				git clone "${REPO}"
+				cd "${DIR_NAME}"
+				uscan --download-current-version
+				sudo DIST=${DIST} pdebuild
+			)
 		done
 	)
 done
