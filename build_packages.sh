@@ -27,6 +27,7 @@ PACKAGE_LIST="
 for DIST in sid bullseye
 do
 	(
+		echo "*** ${DIST} ***"
 		BUILD_DIR=${HOME}/build/${DIST}
 		rm -rf "${BUILD_DIR}"
 		mkdir -p "${BUILD_DIR}"
@@ -39,6 +40,7 @@ do
 
 		for REPO in ${PACKAGE_LIST}; do
 			(
+				echo "*** ${REPO} ***"
 				DIR_NAME=$(basename "${REPO}")
 				git clone "${REPO}"
 				cd "${DIR_NAME}"
