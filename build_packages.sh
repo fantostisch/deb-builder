@@ -1,12 +1,12 @@
 #!/bin/sh
+set -e
 
 DISTRO=sid
 REPO_DIR=/var/www/repo
 RESULT_DIR=/var/cache/pbuilder/result
 
-set -e
-
 BUILD_DIR=${HOME}/build
+rm -rf ${BUILD_DIR}
 mkdir -p ${BUILD_DIR}
 cd ${BUILD_DIR}
 
@@ -35,25 +35,8 @@ for REPO in \
 do
 (
 	DIR_NAME=$(basename ${REPO})
-	# maybe we already checked out the code before...
-	if ! [ -d "${DIR_NAME}" ]; then
-		git clone ${REPO}
-	else
-		(
-			cd "${DIR_NAME}"
-			# try to update repo
-			git fetch origin
-			# make sure we are on HEAD...
-			git checkout HEAD
-			git pull origin HEAD
-		)
-	fi
+	git clone ${REPO}
 	cd "${DIR_NAME}"
-
-	# ... as this may fail if there is no such branch
-	git checkout ${DISTRO} || true
-	git pull origin ${DISTRO} || true
-
 	uscan --download-current-version
 	sudo pdebuild
 )

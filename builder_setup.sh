@@ -1,9 +1,8 @@
 #!/bin/sh
+set -e
 
 DISTRO=sid
-
 rm -rf /var/cache/pbuilder/result/*
-set -e
 
 (
 	cd /var/cache/pbuilder/result || exit 1
