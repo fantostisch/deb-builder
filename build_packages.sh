@@ -23,8 +23,7 @@ PACKAGE_LIST="
 	https://git.tuxed.net/deb/php-secookie \
 	https://git.tuxed.net/deb/php-saml-sp"
 
-#for DIST in sid bullseye buster
-for DIST in sid bullseye
+for DIST in sid bullseye buster
 do
 	(
 		echo "*** ${DIST} ***"

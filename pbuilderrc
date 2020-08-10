@@ -7,3 +7,8 @@ BASETGZ="/var/cache/pbuilder/base-${DIST}.tgz"
 HOOKDIR="/etc/pbuilder/hook.d/${DIST}/"
 BUILDRESULT="/var/cache/pbuilder/${DIST}/result/"
 DISTRIBUTION="${DIST}"
+
+# add backports repo for Go packages on buster (Debian 10)
+if [ "buster" = "${DIST}" ]; then
+	OTHERMIRROR="deb http://deb.debian.org/debian buster-backports main | ${OTHERMIRROR}"
+fi
