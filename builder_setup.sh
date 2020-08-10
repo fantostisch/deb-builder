@@ -31,7 +31,10 @@ do
 		)
 
 		# create the root for this distribution 
+		mkdir -p "/var/cache/pbuilder/${DIST}/aptcache"
+
 		# the DIST environment variable is used by pbuilderrc
+		export DIST
 		/usr/sbin/pbuilder create
 	)
 done
