@@ -1,23 +1,37 @@
 #!/bin/sh
 set -e
 
-DISTRO=sid
-rm -rf /var/cache/pbuilder/result/*
-
-(
-	cd /var/cache/pbuilder/result || exit 1
-	/usr/bin/apt-ftparchive packages . > Packages
-	/usr/bin/apt-ftparchive release . > Release
-	/usr/bin/apt-ftparchive sources . > Sources 2>/dev/null
-)
-
 cp pbuilderrc /etc/pbuilderrc
 
-# install hooks
-mkdir -p /etc/pbuilder/hook.d
-cp D70results /etc/pbuilder/hook.d
-cp /usr/share/doc/pbuilder/examples/B90lintian /etc/pbuilder/hook.d
-chmod +x /etc/pbuilder/hook.d/*
+#for DIST in sid bullseye buster
+#for DIST in sid bullseye
+for DIST in sid
+do
+	(
+		echo "*** ${DIST} ***"
 
-# create pbuilder root
-/usr/sbin/pbuilder create --distribution ${DISTRO}
+		# install hooks
+		rm -rf "/etc/pbuilder/hook.d/*"
+		mkdir -p "/etc/pbuilder/hook.d/${DIST}"
+		cp hooks/* "/etc/pbuilder/hook.d/${DIST}"
+		# install distro specific hooks (if available)
+		if [ -d "hooks/${DIST}" ]; then
+			cp hooks/${DIST}/* "/etc/pbuilder/hook.d/${DIST}"
+		fi
+
+		# create an empty package repository that will be updated before every
+		# package build...
+		rm -rf "/var/cache/pbuilder/${DIST}/result"
+		mkdir -p "/var/cache/pbuilder/${DIST}/result"
+		(
+			cd "/var/cache/pbuilder/${DIST}/result" || exit 1
+			/usr/bin/apt-ftparchive packages . > Packages
+			/usr/bin/apt-ftparchive release  . > Release
+			/usr/bin/apt-ftparchive sources  . > Sources 2>/dev/null
+		)
+
+		# create the root for this distribution 
+		# the DIST environment variable is used by pbuilderrc
+		/usr/sbin/pbuilder create
+	)
+done

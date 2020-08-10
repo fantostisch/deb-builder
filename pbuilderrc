@@ -1,6 +1,9 @@
-MIRRORSITE=http://deb.debian.org/debian/
+MIRRORSITE="http://deb.debian.org/debian/"
+OTHERMIRROR="deb [trusted=yes] file:/var/cache/pbuilder/${DIST}/result ./"
 EXTRAPACKAGES=apt-utils
-DISTRIBUTION=sid
-HOOKDIR=/etc/pbuilder/hook.d
-BINDMOUNTS=/var/cache/pbuilder/result
-OTHERMIRROR="deb [trusted=yes] file:/var/cache/pbuilder/result ./"
+BINDMOUNTS=/var/cache/pbuilder/${DIST}/result/"
+APTCACHE="/var/cache/pbuilder/${DIST}/aptcache/"
+BASETGZ="/var/cache/pbuilder/base-${DIST}.tgz"
+HOOKDIR="/etc/pbuilder/hook.d/${DIST}/"
+BUILDRESULT="/var/cache/pbuilder/${DIST}/result/"
+DISTRIBUTION="${DIST}"
