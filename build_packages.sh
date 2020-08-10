@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-#REPO_DIR=/var/www/repo
+REPO_DIR=/var/www/repo
 
 #		    https://git.tuxed.net/deb/php-jwt \
 #		    https://git.tuxed.net/deb/php-oauth2-server \
@@ -58,11 +58,11 @@ do
 				sudo DIST=${DIST} pdebuild
 			)
 		done
+
+		# add (new) packages to repository
+		BUILDRESULT="/var/cache/pbuilder/${DIST}/result"
+		for PACKAGE in "${BUILDRESULT}/"*.deb; do
+			reprepro -b ${REPO_DIR} includedeb "${DIST}" "${PACKAGE}"
+		done
 	)
 done
-
-## add all deb/src packages to repository
-#cd ${RESULT_DIR}
-#for P in *.changes; do
-#	reprepro -b ${REPO_DIR} include ${DISTRO} ${P}
-#done
