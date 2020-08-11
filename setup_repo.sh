@@ -12,3 +12,5 @@ sudo chown -R $(id -u -n).$(id -g -n) ${REPO_DIR}
 # init repo
 reprepro -b ${REPO_DIR} createsymlinks
 reprepro -b ${REPO_DIR} export
+
+gpg -a --export >${REPO_DIR}/debian.key
