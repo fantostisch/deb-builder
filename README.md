@@ -49,10 +49,6 @@ In order to setup your builder, download the scripts:
 
     $ ./build_packages.sh
 
-Exposing the package signing key:
-
-    $ gpg -a --export > /var/www/repo/debian.key
-
 ## Apache 
 
 Put this in `/etc/apache2/conf-available/reprepro.conf`:
@@ -82,16 +78,24 @@ Enable it:
 
 # Repository User
 
-Add this to `/etc/apt/sources.list` on the server where you want to install the
-software from the repository. This is usually _not_ your build server...
-
-    deb https://debian-vpn-builder.tuxed.net/repo sid main
-
 Import the repository signing key:
 
     $ curl https://debian-vpn-builder.tuxed.net/repo/debian.key | sudo apt-key add
 
-Now you should be able to install packages:
+Add this to `/etc/apt/sources.list` on the server where you want to install the
+software from the repository. This is usually _not_ your build server...
 
-    $ sudo apt update
-    $ sudo apt install php-saml-sp
+## Debian 10 (buster)
+
+    deb https://debian-vpn-builder.tuxed.net/repo buster main
+
+## Debian 11 (bullseye) 
+
+We expect Debian 11 to be released somewhere in 2021, but there are already 
+pacakges available:
+
+    deb https://debian-vpn-builder.tuxed.net/repo bullseye main
+
+## Debian Unstable (sid)
+
+    deb https://debian-vpn-builder.tuxed.net/repo sid main
