@@ -28,7 +28,7 @@ do
 	(
 		echo "*** ${DIST} ***"
 		BUILD_DIR=${HOME}/build/${DIST}
-		rm -rf "${BUILD_DIR}"
+		sudo rm -rf "${BUILD_DIR}"
 		mkdir -p "${BUILD_DIR}"
 		cd "${BUILD_DIR}" || exit 1
 
@@ -55,14 +55,14 @@ do
 				fi
 
 				uscan --download-current-version
-				sudo DIST=${DIST} pdebuild --use-pdebuild-internal
+				sudo DIST="${DIST}" HOME="${HOME}" pdebuild --use-pdebuild-internal
 			)
 		done
 
 		# add (new) packages to repository
 		BUILDRESULT="/var/cache/pbuilder/${DIST}/result"
 		for PACKAGE in "${BUILDRESULT}/"*.deb; do
-			reprepro -b ${REPO_DIR} includedeb "${DIST}" "${PACKAGE}"
+			reprepro -b ${REPO_DIR} includedeb "${DIST}" "${PACKAGE}" || true
 		done
 	)
 done
