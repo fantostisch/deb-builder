@@ -3,25 +3,25 @@ set -e
 
 REPO_DIR=/var/www/repo
 
-#		    https://git.tuxed.net/deb/php-jwt \
-#		    https://git.tuxed.net/deb/php-oauth2-server \
-#		    https://git.tuxed.net/deb/php-openvpn-connection-manager \
-#		    https://git.tuxed.net/deb/php-otp-verifier \
-#		    https://git.tuxed.net/deb/php-sqlite-migrate \
-#		    https://git.tuxed.net/deb/vpn-ca \
-#		    https://git.tuxed.net/deb/vpn-daemon \
-#		    https://git.tuxed.net/deb/vpn-lib-common \
-#		    https://git.tuxed.net/deb/vpn-server-api \
-#		    https://git.tuxed.net/deb/vpn-user-portal \
-#		    https://git.tuxed.net/deb/vpn-server-node \
-		#    https://git.tuxed.net/deb/vpn-maint-scripts \
-		#    https://git.tuxed.net/deb/vpn-portal-artwork-eduvpn \
-		#    https://git.tuxed.net/deb/vpn-portal-artwork-lc \
-		#    https://git.tuxed.net/deb/php-saml-sp-artwork-eduvpn;
-
 PACKAGE_LIST="
 	https://git.tuxed.net/deb/php-secookie \
+	https://git.tuxed.net/deb/php-jwt \
+	https://git.tuxed.net/deb/php-oauth2-server \
+	https://git.tuxed.net/deb/php-openvpn-connection-manager \
+	https://git.tuxed.net/deb/php-otp-verifier \
+	https://git.tuxed.net/deb/php-sqlite-migrate \
+	https://git.tuxed.net/deb/vpn-ca \
+	https://git.tuxed.net/deb/vpn-daemon \
+	https://git.tuxed.net/deb/vpn-lib-common \
+	https://git.tuxed.net/deb/vpn-server-api \
+	https://git.tuxed.net/deb/vpn-user-portal \
+	https://git.tuxed.net/deb/vpn-server-node \
 	https://git.tuxed.net/deb/php-saml-sp"
+
+#https://git.tuxed.net/deb/vpn-maint-scripts \
+#https://git.tuxed.net/deb/vpn-portal-artwork-eduvpn \
+#https://git.tuxed.net/deb/vpn-portal-artwork-lc \
+#https://git.tuxed.net/deb/php-saml-sp-artwork-eduvpn;
 
 for DIST in sid bullseye buster
 do
