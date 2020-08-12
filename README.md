@@ -92,7 +92,7 @@ software from the repository. This is usually _not_ your build server...
 
 ## Debian 11 (bullseye) 
 
-We expect Debian 11 to be released somewhere in 2021, but there are already 
+We expect Debian 11 to be released somewhere in 2021, but there are already
 packages available:
 
     deb https://debian-vpn-builder.tuxed.net/repo bullseye main
@@ -100,3 +100,43 @@ packages available:
 ## Debian Unstable (sid)
 
     deb https://debian-vpn-builder.tuxed.net/repo sid main
+
+
+# Updating Packages
+
+In order to update a package, you can use the following commands:
+
+	$ git clone git@git.tuxed.net:deb/php-saml-sp
+
+We need to make the `upstream` branch available locally, not sure how to do
+that properly, but this works:
+
+	$ git checkout upstream
+	$ git checkout main
+
+Download the latest upstream tar release and verify the signature:
+
+	$ uscan
+
+Import the new release in the Git repository:
+
+	$ gbp import-origin ../php-saml-sp-0.5.4.tar.xz --debian-branch=main
+
+Update the `debian/changelog` file. Your editor will be opened.
+
+	$ dch -v 0.5.4
+
+The update message could be "update to 0.5.4". If you make any other changes to
+the package, note them here as well. Finalize the changes:
+
+	$ dch -r
+
+Review the changes:
+
+	$ git diff
+
+If all looks good, commit and push the changes:
+
+	$ git commit -a -m 'update to 0.5.4'
+	$ git push origin --all
+	$ git push origin --tags
