@@ -23,6 +23,15 @@ PACKAGE_LIST="
 #https://git.tuxed.net/deb/vpn-portal-artwork-lc \
 #https://git.tuxed.net/deb/php-saml-sp-artwork-eduvpn;
 
+fileExists() {
+	for F in "$@"; do
+		if [ -f "$F" ]; then
+			return 0
+		fi
+	done
+	return 1 
+}
+
 for DIST in sid bullseye buster
 do
 	(
@@ -54,14 +63,17 @@ do
 					dch -m -r "Release for Debian 11 (bullseye)"
 				fi
 
-                # check whether we already have a build with this exact 
-                # version, if so, skip building it
-                PACKAGE_MATCH=$(grep "Package:" debian/control | awk \{'print $2'\})_$(dpkg-parsechangelog -S version)
-                if ! fileExists /var/cache/pbuilder/${DIST}/result/${PACKAGE_MATCH}*.deb;
-                    echo "BUILDING!"
-				    #uscan --download-current-version
-				    #sudo DIST="${DIST}" HOME="${HOME}" pdebuild --use-pdebuild-internal
-                fi
+				# check whether we already have a build with 
+				# this exact version, if so, skip building it
+				PACKAGE_MATCH=$(grep "Package:" debian/control | awk \{'print $2'\})_$(dpkg-parsechangelog -S version)
+				if ! fileExists "/var/cache/pbuilder/${DIST}/result/${PACKAGE_MATCH}"*.deb;
+				then
+					echo "[BUILD] ${PACKAGE_MATCH}"
+					uscan --download-current-version
+					sudo DIST="${DIST}" HOME="${HOME}" pdebuild --use-pdebuild-internal
+				else
+					echo "[SKIP] ${PACKAGE_MATCH}"
+				fi
 			)
 		done
 
@@ -72,12 +84,3 @@ do
 		done
 	)
 done
-
-fileExists() {
-	for F in "$@"; do
-		if [ -f "$F" ]; then
-			return 0
-		fi
-	done
-	return 1 
-}
