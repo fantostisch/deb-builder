@@ -45,12 +45,12 @@ do
 				cd "${DIR_NAME}"
 
 				if [ "buster" = ${DIST} ]; then
-					dch -m -l deb10+eduvpn "Release for Debian 10 (buster)"		
+					dch -m -l "eduvpn+deb10u1" "Release for Debian 10 (buster)"
 					dch -m -r "Release for Debian 10 (buster)"
 				fi
 
 				if [ "bullseye" = ${DIST} ]; then
-					dch -m -l deb11+eduvpn "Release for Debian 11 (bullseye)"		
+					dch -m -l "eduvpn+deb11u1" "Release for Debian 11 (bullseye)"
 					dch -m -r "Release for Debian 11 (bullseye)"
 				fi
 
