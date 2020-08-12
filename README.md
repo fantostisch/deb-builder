@@ -16,20 +16,21 @@ In order to setup TLS:
 
 # PGP
 
-    $ gpg --generate-key
+Generate an RSA 3072 key that expires in 5 years:
 
-It is easy to not set a password, so you don't need to provide it every time. 
-Of course this is only acceptable for development...
+	$ gpg --batch --passphrase '' --quick-generate-key "Debian Packaging Key <debian@example.org>" default default 5y
+
+**NOTE**: for production packages you SHOULD use a passphrase! 
 
 After you generate it, verify it:
 
-    $ gpg -K
-    /home/debian/.gnupg/pubring.kbx
-    -------------------------------
-    sec   rsa3072 2020-07-23 [SC] [expires: 2022-07-23]
-          0A9D8A595B9B0408D8C7680E9ADF44C54EB48E5F
-    uid           [ultimate] Debian Packaging Key <debian@example.org>
-    ssb   rsa3072 2020-07-23 [E] [expires: 2022-07-23]
+	$ gpg -K
+	/home/fkooman/.gnupg/pubring.kbx
+	--------------------------------
+	sec   rsa3072 2020-08-12 [SC] [expires: 2025-08-11]
+	      B5DA0D7AFFCD812FD066D2B1335F2E9D8FF4588D
+	uid           [ultimate] Debian Packaging Key <debian@example.org>
+	ssb   rsa3072 2020-08-12 [E]
 
 # Builder
 
@@ -92,7 +93,7 @@ software from the repository. This is usually _not_ your build server...
 ## Debian 11 (bullseye) 
 
 We expect Debian 11 to be released somewhere in 2021, but there are already 
-pacakges available:
+packages available:
 
     deb https://debian-vpn-builder.tuxed.net/repo bullseye main
 
