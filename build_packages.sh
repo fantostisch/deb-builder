@@ -54,8 +54,14 @@ do
 					dch -m -r "Release for Debian 11 (bullseye)"
 				fi
 
-				uscan --download-current-version
-				sudo DIST="${DIST}" HOME="${HOME}" pdebuild --use-pdebuild-internal
+                # check whether we already have a build with this exact 
+                # version, if so, skip building it
+                PACKAGE_MATCH=$(grep "Package:" debian/control | awk \{'print $2'\})_$(dpkg-parsechangelog -S version)
+                if ! fileExists /var/cache/pbuilder/${DIST}/result/${PACKAGE_MATCH}*.deb;
+                    echo "BUILDING!"
+				    #uscan --download-current-version
+				    #sudo DIST="${DIST}" HOME="${HOME}" pdebuild --use-pdebuild-internal
+                fi
 			)
 		done
 
@@ -66,3 +72,12 @@ do
 		done
 	)
 done
+
+fileExists() {
+	for F in "$@"; do
+		if [ -f "$F" ]; then
+			return 0
+		fi
+	done
+	return 1 
+}
