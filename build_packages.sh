@@ -54,7 +54,7 @@ do
 					# update it
 					cd "${DIR_NAME}"
 					git checkout -- .
-					git pull origin main
+					git pull origin main || true
 				else 
 					git clone "${REPO}"
 					cd "${DIR_NAME}"
