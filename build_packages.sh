@@ -37,7 +37,6 @@ do
 	(
 		echo "*** ${DIST} ***"
 		BUILD_DIR=${HOME}/build/${DIST}
-		sudo rm -rf "${BUILD_DIR}"
 		mkdir -p "${BUILD_DIR}"
 		cd "${BUILD_DIR}" || exit 1
 
