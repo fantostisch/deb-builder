@@ -50,8 +50,16 @@ do
 			(
 				echo "*** ${REPO} ***"
 				DIR_NAME=$(basename "${REPO}")
-				git clone "${REPO}"
-				cd "${DIR_NAME}"
+				if [ -d "${DIR_NAME}" ]; then
+					# we already have the repo, clean and 
+					# update it
+					cd "${DIR_NAME}"
+					git checkout -- .
+					git pull origin main
+				else 
+					git clone "${REPO}"
+					cd "${DIR_NAME}"
+				fi
 
 				if [ "buster" = ${DIST} ]; then
 					dch -m -l "deb10+eduvpn" "Release for Debian 10 (buster)"
