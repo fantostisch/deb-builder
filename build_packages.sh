@@ -54,6 +54,7 @@ do
 					# we already have the repo, clean and 
 					# update it
 					cd "${DIR_NAME}"
+					sudo git clean -d -f
 					git checkout -- .
 					git pull origin
 				else 
