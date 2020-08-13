@@ -104,6 +104,19 @@ packages available:
 
 # Updating Packages
 
+## Setup 
+
+Make sure the variables `DEBFULLNAME` and `DEBEMAIL` are set. This makes sure 
+`dch` below uses this information to update the `debian/changelog` file. Add 
+this to the bottom of `${HOME}/.profile`:
+
+	export DEBFULLNAME="François Kooman"
+	export DEBEMAIL=fkooman@tuxed.net
+
+After this make sure you logout and in again.
+
+## Package Update
+
 In order to update a package, you can use the following commands:
 
 	$ git clone git@git.tuxed.net:deb/php-saml-sp
