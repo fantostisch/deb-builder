@@ -124,7 +124,7 @@ Import the new release in the Git repository:
 
 Update the `debian/changelog` file. Your editor will be opened.
 
-	$ dch -v 0.5.4
+	$ dch -v 0.5.4-1
 
 The update message could be "update to 0.5.4". If you make any other changes to
 the package, note them here as well. Finalize the changes:
