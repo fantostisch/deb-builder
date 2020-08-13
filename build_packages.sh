@@ -18,10 +18,9 @@ PACKAGE_LIST="
 	https://git.tuxed.net/deb/vpn-server-node \
 	https://git.tuxed.net/deb/php-saml-sp \
 	https://git.tuxed.net/deb/vpn-portal-artwork-eduvpn \
-	https://git.tuxed.net/deb/vpn-portal-artwork-lc"
+	https://git.tuxed.net/deb/vpn-portal-artwork-lc \
+	https://git.tuxed.net/deb/vpn-maint-scripts"
 
-
-#https://git.tuxed.net/deb/vpn-maint-scripts \
 #https://git.tuxed.net/deb/php-saml-sp-artwork-eduvpn;
 
 fileExists() {
