@@ -62,12 +62,12 @@ do
 				fi
 
 				if [ "buster" = ${DIST} ]; then
-					dch -m -l "deb10+eduvpn" "Release for Debian 10 (buster)"
+					dch -m -l "+deb10+eduvpn.org+" "Release for Debian 10 (buster)"
 					dch -m -r "Release for Debian 10 (buster)"
 				fi
 
 				if [ "bullseye" = ${DIST} ]; then
-					dch -m -l "deb11+eduvpn" "Release for Debian 11 (bullseye)"
+					dch -m -l "+deb11+eduvpn.org+" "Release for Debian 11 (bullseye)"
 					dch -m -r "Release for Debian 11 (bullseye)"
 				fi
 
