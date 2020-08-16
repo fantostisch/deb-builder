@@ -1,0 +1,28 @@
+#!/bin/sh
+set -e
+
+cat > "/etc/apt/preferences" << EOF
+Package: golang-any
+Pin: release a=stretch-backports
+Pin-Priority: 999
+
+Package: golang-go
+Pin: release a=stretch-backports
+Pin-Priority: 999
+
+Package: golang-src
+Pin: release a=stretch-backports
+Pin-Priority: 999
+
+Package: dh-golang
+Pin: release a=stretch-backports
+Pin-Priority: 999
+
+Package: debhelper
+Pin: release a=stretch-backports
+Pin-Priority: 999
+
+Package: dh-autoreconf
+Pin: release a=stretch-backports
+Pin-Priority: 999
+EOF

@@ -3,7 +3,7 @@ set -e
 
 cp pbuilderrc /etc/pbuilderrc
 
-for DIST in sid bullseye buster
+for DIST in sid bullseye buster stretch
 do
 	(
 		echo "*** ${DIST} ***"

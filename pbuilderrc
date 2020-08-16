@@ -13,3 +13,8 @@ DISTRIBUTION="${DIST}"
 if [ "buster" = "${DIST}" ]; then
 	OTHERMIRROR="deb http://deb.debian.org/debian buster-backports main | ${OTHERMIRROR}"
 fi
+
+# add backports repo for Go packages on stretch (Debian 9)
+if [ "stretch" = "${DIST}" ]; then
+	OTHERMIRROR="deb http://deb.debian.org/debian stretch-backports main | ${OTHERMIRROR}"
+fi

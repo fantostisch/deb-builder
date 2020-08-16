@@ -32,7 +32,7 @@ fileExists() {
 	return 1 
 }
 
-for DIST in sid bullseye buster
+for DIST in sid bullseye buster stretch
 do
 	(
 		echo "*** ${DIST} ***"
@@ -55,10 +55,18 @@ do
 					cd "${DIR_NAME}"
 					sudo git clean -d -f
 					git checkout -- .
+					git checkout main || git checkout master || true
 					git pull origin
 				else 
 					git clone "${REPO}"
 					cd "${DIR_NAME}"
+				fi
+
+				if [ "stretch" = ${DIST} ]; then
+					git checkout stretch || true
+					git pull origin || true
+					dch -m -l "+deb9+eduvpn.org+" "Release for Debian 9 (stretch)"
+					dch -m -r "Release for Debian 9 (stretch)"
 				fi
 
 				if [ "buster" = ${DIST} ]; then

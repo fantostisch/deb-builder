@@ -18,3 +18,10 @@ Architectures: amd64 source
 Components: main
 AlsoAcceptFor: unstable
 SignWith: yes
+
+Codename: stretch
+Suite: oldstable
+Architectures: amd64 source
+Components: main
+AlsoAcceptFor: unstable
+SignWith: yes
