@@ -43,10 +43,21 @@ In order to setup your builder, download the scripts:
 ## Setup
 
     $ cd builder
+
+If you want to only build certain distros, you can create a file `dist_list` in 
+the `builder` directory, containing for example which indicates you only want 
+to build for Debian 10 (buster) and Debian 9 (stretch):
+
+    DIST_LIST="buster stretch"
+
+The setup the builder and repository:
+
     $ sudo ./builder_setup.sh
     $ ./setup_repo.sh
 
 ## Building Packages
+
+Build all packages and add them to the repository:
 
     $ ./build_packages.sh
 
