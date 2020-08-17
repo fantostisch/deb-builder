@@ -32,7 +32,12 @@ fileExists() {
 	return 1 
 }
 
-for DIST in sid bullseye buster stretch
+DIST_LIST="sid bullseye buster stretch"
+if [ -f "dist_list" ]; then
+        . ./dist_list
+fi
+
+for DIST in ${DIST_LIST}
 do
 	(
 		echo "*** ${DIST} ***"
@@ -62,19 +67,19 @@ do
 					cd "${DIR_NAME}"
 				fi
 
-				if [ "stretch" = ${DIST} ]; then
+				if [ "stretch" = "${DIST}" ]; then
 					git checkout stretch || true
 					git pull origin || true
 					dch -m -l "+deb9+eduvpn.org+" "Release for Debian 9 (stretch)"
 					dch -m -r "Release for Debian 9 (stretch)"
 				fi
 
-				if [ "buster" = ${DIST} ]; then
+				if [ "buster" = "${DIST}" ]; then
 					dch -m -l "+deb10+eduvpn.org+" "Release for Debian 10 (buster)"
 					dch -m -r "Release for Debian 10 (buster)"
 				fi
 
-				if [ "bullseye" = ${DIST} ]; then
+				if [ "bullseye" = "${DIST}" ]; then
 					dch -m -l "+deb11+eduvpn.org+" "Release for Debian 11 (bullseye)"
 					dch -m -r "Release for Debian 11 (bullseye)"
 				fi

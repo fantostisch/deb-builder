@@ -3,7 +3,12 @@ set -e
 
 cp pbuilderrc /etc/pbuilderrc
 
-for DIST in sid bullseye buster stretch
+DIST_LIST="sid bullseye buster stretch"
+if [ -f "dist_list" ]; then
+	. ./dist_list
+fi
+
+for DIST in ${DIST_LIST}
 do
 	(
 		echo "*** ${DIST} ***"
@@ -14,7 +19,7 @@ do
 		cp hooks/* "/etc/pbuilder/hook.d/${DIST}" || true
 		# install distro specific hooks (if available)
 		if [ -d "hooks/${DIST}" ]; then
-			cp hooks/${DIST}/* "/etc/pbuilder/hook.d/${DIST}"
+			cp "hooks/${DIST:?}"/* "/etc/pbuilder/hook.d/${DIST}"
 		fi
 
 		# create an empty package repository that will be updated before every
