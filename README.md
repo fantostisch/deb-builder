@@ -99,6 +99,10 @@ Import the repository signing key:
 Add this to `/etc/apt/sources.list` on the server where you want to install the
 software from the repository. This is usually _not_ your build server...
 
+## Debian 9 (stretch)
+
+    deb https://debian-vpn-builder.tuxed.net/repo stretch main
+
 ## Debian 10 (buster)
 
     deb https://debian-vpn-builder.tuxed.net/repo buster main
