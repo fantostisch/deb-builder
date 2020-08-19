@@ -150,7 +150,7 @@ Download the latest upstream tar release and verify the signature:
 
 Import the new release in the Git repository:
 
-	$ gbp import-origin ../php-saml-sp-0.5.4.tar.xz --debian-branch=main
+	$ gbp import-orig ../php-saml-sp-0.5.4.tar.xz --debian-branch=main
 
 Update the `debian/changelog` file. Your editor will be opened.
 
