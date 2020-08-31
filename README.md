@@ -168,5 +168,16 @@ Review the changes:
 If all looks good, commit and push the changes:
 
 	$ git commit -a -m 'update to 0.5.4'
+	
+For `stretch` we have a separate branch for some packages, if that is the case
+for the particular package you want to update, also merge the changes to the
+`stretch` branch:
+
+    $ git checkout stretch
+    $ git merge main
+    $ git checkout main
+    
+Now push all branches/tags to the server:
+
 	$ git push origin --all
 	$ git push origin --tags
