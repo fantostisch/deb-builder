@@ -1,5 +1,8 @@
 # Introduction
 
+This document will explain how to set up a Debian package build server, from 
+the builder itself to the web server hosting the packages (over TLS).
+
 Install Debian 10 on a (virtual) machine. Make sure the following packages
 are installed:
 
