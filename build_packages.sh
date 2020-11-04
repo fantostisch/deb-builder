@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -ex
 
 REPO_DIR=/var/www/repo
 
@@ -12,10 +12,10 @@ PACKAGE_LIST="
 	https://git.tuxed.net/deb/php-sqlite-migrate \
 	https://git.tuxed.net/deb/vpn-ca \
 	https://git.tuxed.net/deb/vpn-daemon \
-	https://git.tuxed.net/deb/vpn-lib-common \
-	https://git.tuxed.net/deb/vpn-server-api \
-	https://git.tuxed.net/deb/vpn-user-portal \
-	https://git.tuxed.net/deb/vpn-server-node \
+	https://github.com/fantostisch/deb-vpn-lib-common \
+	https://github.com/fantostisch/deb-vpn-server-api \
+	https://github.com/fantostisch/deb-wireguard-vpn-user-portal \
+	https://github.com/fantostisch/deb-vpn-server-node \
 	https://git.tuxed.net/deb/vpn-maint-scripts \
 	https://git.tuxed.net/deb/vpn-portal-artwork-eduvpn \
 	https://git.tuxed.net/deb/vpn-portal-artwork-lc \
