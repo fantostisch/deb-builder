@@ -90,7 +90,11 @@ do
 				if ! fileExists "/var/cache/pbuilder/${DIST}/result/${PACKAGE_MATCH}"*.deb;
 				then
 					echo "[BUILD] ${PACKAGE_MATCH}"
-					uscan --download-current-version
+					# The filename of the source .tar.gz might be same, so use --rename.
+					# For example the source file for for vpn-lib-common and vpn-server-api is both wg-0.0.1.tar.gz
+					# When building the vpn-server-api it will use the source of vpn-lib-common,
+					# if we do not remove the source of vpn-lib-common.
+					uscan --download-current-version --rename
 					sudo DIST="${DIST}" HOME="${HOME}" pdebuild --use-pdebuild-internal
 				else
 					echo "[SKIP] ${PACKAGE_MATCH}"
