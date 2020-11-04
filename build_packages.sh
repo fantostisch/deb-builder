@@ -20,7 +20,13 @@ PACKAGE_LIST="
 	https://git.tuxed.net/deb/vpn-portal-artwork-eduvpn \
 	https://git.tuxed.net/deb/vpn-portal-artwork-lc \
 	https://git.tuxed.net/deb/php-saml-sp \
-	https://git.tuxed.net/deb/php-saml-sp-artwork-eduvpn"
+	https://git.tuxed.net/deb/php-saml-sp-artwork-eduvpn \
+	https://github.com/fantostisch/golang-github-mdlayher-netlink \
+	https://github.com/fantostisch/golang-github-jsimonetti-rtnetlink \
+	https://github.com/fantostisch/golang-github-mdlayher-genetlink \
+	https://github.com/fantostisch/golang-github-mikioh-ipaddr \
+	https://github.com/fantostisch/golang-zx2c4-wireguard-wgctrl \
+	https://github.com/fantostisch/deb-wireguard-daemon"
 
 # helper function to check whether a file out of a list of files exists
 fileExists() {
@@ -90,12 +96,27 @@ do
 				if ! fileExists "/var/cache/pbuilder/${DIST}/result/${PACKAGE_MATCH}"*.deb;
 				then
 					echo "[BUILD] ${PACKAGE_MATCH}"
-					# The filename of the source .tar.gz might be same, so use --rename.
-					# For example the source file for for vpn-lib-common and vpn-server-api is both wg-0.0.1.tar.gz
-					# When building the vpn-server-api it will use the source of vpn-lib-common,
-					# if we do not remove the source of vpn-lib-common.
-					uscan --download-current-version --rename
-					sudo DIST="${DIST}" HOME="${HOME}" pdebuild --use-pdebuild-internal
+					# when using git commit ids, uscan always downloads the latest version
+					# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=913970
+					if [ "$DIR_NAME" = "golang-github-jsimonetti-rtnetlink" ]; then
+						git pull --tags origin upstream
+						gbp export-orig
+					else
+						# The filename of the source .tar.gz might be same, so use --rename.
+						# For example the source file for for vpn-lib-common and vpn-server-api
+						# is both wg-0.0.1.tar.gz. When building the vpn-server-api it will use
+						# the source of vpn-lib-common, if we do not remove the source of
+						# vpn-lib-common.
+						uscan --download-current-version --rename
+					fi
+					# todo: run tests for netlink, currently not done because of circular
+					# dependency on rtnetlink
+					if [ "$DIR_NAME" = "golang-github-mdlayher-netlink" ]; then
+					    DEB_BUILD_OPTIONS=nocheck
+					else
+					    DEB_BUILD_OPTIONS=""
+					fi
+					sudo DIST="${DIST}" HOME="${HOME}" DEB_BUILD_OPTIONS="$DEB_BUILD_OPTIONS" pdebuild --use-pdebuild-internal
 				else
 					echo "[SKIP] ${PACKAGE_MATCH}"
 				fi
