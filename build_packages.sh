@@ -98,7 +98,9 @@ do
 					echo "[BUILD] ${PACKAGE_MATCH}"
 					# when using git commit ids, uscan always downloads the latest version
 					# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=913970
-					if [ "$DIR_NAME" = "golang-github-jsimonetti-rtnetlink" ]; then
+					if [ "$DIR_NAME" = "golang-github-jsimonetti-rtnetlink" ] \
+					    || [ "$DIR_NAME" = "golang-github-mikioh-ipaddr" ] \
+					    || [ "$DIR_NAME" = "golang-zx2c4-wireguard-wgctrl" ]; then
 						git pull --tags origin upstream
 						gbp export-orig
 					else
